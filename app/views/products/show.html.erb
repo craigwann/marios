@@ -21,8 +21,8 @@
   <p>There are no reviews yet!</p>
 <% end %>
 
-<button class="btn btn-success"><p><%= link_to "Add a review", new_product_review_path(@product) %></p></button>
-<button class="btn btn-danger"><p><%= link_to "Delete List", product_path(@product),
+<button class="btn btn-success"><p><%= link_to "Add Review", new_product_review_path(@product) %></p></button>
+<button class="btn btn-danger"><p><%= link_to "Delete Product", product_path(@product),
                         :data => {:confirm => "Are you sure?",
                                        :method => "delete"} %></p></button>
 
