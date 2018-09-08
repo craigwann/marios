@@ -1,7 +1,7 @@
-<% content_for(:title, "Product") %>
+<% content_for(:title, @product.name) %>
 <h1><%= @product.name %></h1>
 <h3><%= @product.country %></h3>
-<h2><%= @product.price %></h2>
+<h2>$<%= @product.price %></h2>
 
 <% if @product.reviews.any? %>
   <h4>Here are the reviews for this product:</h4>
@@ -21,9 +21,9 @@
   <p>There are no reviews yet!</p>
 <% end %>
 
-<button class="btn btn-success"><p><%= link_to "Add Review", new_product_review_path(@product) %></p></button>
-<button class="btn btn-danger"><p><%= link_to "Delete Product", product_path(@product),
+<button class="btn btn-default"><p><%= link_to "Add Review", new_product_review_path(@product) %></p></button>
+<button class="btn btn-default"><p><%= link_to "Delete Product", product_path(@product),
                         :data => {:confirm => "Are you sure?",
                                        :method => "delete"} %></p></button>
 
-<button class="btn btn-info"><p><%= link_to "Return to products", products_path %></p></button>
+<button class="btn btn-default"><p><%= link_to "Return to products", products_path %></p></button>
