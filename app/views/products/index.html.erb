@@ -1,10 +1,58 @@
 <% content_for(:title, "Products List") %>
-<h1>Products</h1>
+<div class="container">
+  <div class="row">
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.name, product_path(product) %> - $<%= sprintf("%.2f", @product.price().to_f) %></li>
-  <% end %>
-</ul>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Product with the most reviews</h3>
+        </div>
+        <div class="panel-body">
+          <% @products_review.each do |product| %>
+            <p><%= link_to product.name, product_path(product) %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Recently added products</h3>
+        </div>
+        <div class="panel-body">
+          <% @products_recent.each do |product| %>
+            <li><%= link_to product.name, product_path(product) %></li>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Products made in USA</h3>
+        </div>
+        <div class="panel-body">
+          <% @products_united.each do |product| %>
+            <li><%= link_to product.name, product_path(product) %></li>
+          <% end %>
+            <% @products_usa.each do |product| %>
+              <li><%= link_to product.name, product_path(product) %></li>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div> <!--- end of row--->
+
+
+    <h3>All of Mario's Foods </h3>
+    <ul>
+      <% @products.each do |product| %>
+        <li><%= link_to product.name, product_path(product) %> - $<%= sprintf("%.2f", product.price().to_f) %> <%= link_to "Edit", edit_product_path(product) %></li>
+      <% end %>
+    </ul>
+
+</div>
  <%= link_to "New Product", new_product_path %>

@@ -1,7 +1,19 @@
 <% content_for(:title, @product.name) %>
-<h1><%= @product.name %></h1>
-<h3><%= @product.country %></h3>
-<h2>$<%= sprintf("%.2f", @product.price().to_f) %></h2>
+
+<div class="jumbotron">
+  <h3><%= @product.name %></h3>
+  <h5>made in <%= @product.country %></h5>
+  <h4>$<%= sprintf("%.2f", @product.price().to_f) %></h4>
+
+  <button class="btn btn-default"><p><%= link_to "Add Review", new_product_review_path(@product) %></p></button>
+  <button class="btn btn-default"><p><%= link_to "Delete Product", product_path(@product),
+                          :data => {:confirm => "Are you sure?",
+                                         :method => "delete"} %></p></button>
+  <button class="btn btn-default"> <p> <%= link_to "Edit", edit_product_path(@product) %></p>
+
+  <button class="btn btn-default"><p><%= link_to "Return to products", products_path %></p></button>
+
+</div>
 
 <% if @product.reviews.any? %>
   <h4>Here are the reviews for this product:</h4>
@@ -9,7 +21,7 @@
   <ul>
     <% @product.reviews.each do |review| %>
       <li>
-        <%= review.content_body %> with a rating of <%= review.rating %> from <%= review.author %>
+        <strong><%= review.content_body %></strong> with a rating of <strong><%= review.rating %></strong> from <em><%= review.author %></em>
         <%= link_to "Edit", edit_product_review_path(@product, review) %> |
         <%= link_to "Delete", product_review_path(@product, review),
                                  :data => {:confirm => "Are you sure?",
@@ -20,10 +32,3 @@
 <% else %>
   <p>There are no reviews yet!</p>
 <% end %>
-
-<button class="btn btn-default"><p><%= link_to "Add Review", new_product_review_path(@product) %></p></button>
-<button class="btn btn-default"><p><%= link_to "Delete Product", product_path(@product),
-                        :data => {:confirm => "Are you sure?",
-                                       :method => "delete"} %></p></button>
-
-<button class="btn btn-default"><p><%= link_to "Return to products", products_path %></p></button>
