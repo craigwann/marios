@@ -1,7 +1,7 @@
 <% content_for(:title, @product.name) %>
 <h1><%= @product.name %></h1>
 <h3><%= @product.country %></h3>
-<h2>$<%= @product.price %></h2>
+<h2>$<%= sprintf("%.2f", @product.price().to_f) %></h2>
 
 <% if @product.reviews.any? %>
   <h4>Here are the reviews for this product:</h4>
